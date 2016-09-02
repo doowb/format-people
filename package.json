@@ -23,5 +23,13 @@
   "keywords": [
     "format",
     "people"
-  ]
+  ],
+  "dependencies": {
+    "extend-shallow": "^2.0.1",
+    "markdown-utils": "^0.7.3",
+    "right-pad-values": "^0.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  }
 }
