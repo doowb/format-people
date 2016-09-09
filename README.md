@@ -1,8 +1,10 @@
-# format-people [![NPM version](https://badge.fury.io/js/format-people.svg)](https://npmjs.org/package/format-people) [![Build Status](https://travis-ci.org/doowb/format-people.svg?branch=master)](https://travis-ci.org/doowb/format-people)
+# format-people [![NPM version](https://img.shields.io/npm/v/format-people.svg?style=flat)](https://www.npmjs.com/package/format-people) [![NPM downloads](https://img.shields.io/npm/dm/format-people.svg?style=flat)](https://npmjs.org/package/format-people) [![Build Status](https://img.shields.io/travis/doowb/format-people.svg?style=flat)](https://travis-ci.org/doowb/format-people)
 
-> Format a list of authors, contributors, or collaborators.
+Format a list of authors, contributors, or collaborators.
 
-## Installation
+## Install
+
+Install with [npm](https://www.npmjs.com/):
 
 ```sh
 $ npm install --save format-people
@@ -11,10 +13,168 @@ $ npm install --save format-people
 ## Usage
 
 ```js
-var formatPeople = require('format-people');
-formatPeople();
+var format = require('format-people');
 ```
 
-## License
+## API
 
-MIT © [Brian Woodward](https://github.com/doowb)
+### [format](index.js#L24)
+
+Format a list of people like objects (e.g. authors, contributors, and collaborators) into the specified format.
+
+**Params**
+
+* `arr` **{Array}**: Array of people objects.
+* `options` **{Object}**: Additional options
+* `options.format` **{String}**: Formatter function used to format the array. See [formatters](#formatters) for more details.
+* `returns` **{Mixed}**: Formatted array of people. Returned type depends on formatter.
+
+**Example**
+
+```js
+var people = [
+  { name: 'Brian Woodward' }
+];
+var table = format(people, {format: 'table'});
+console.log(table);
+```
+
+## Formatters
+
+### [.noop](lib/formatters.js#L25)
+
+Returns the array as-is without any formatting.
+
+**Params**
+
+* `arr` **{Array}**: Array of people to format.
+* `returns` **{Array}**: Unmodified array of people.
+
+**Example**
+
+```js
+var people = [
+  { login: 'doowb' }
+];
+var formatted = formatters.noop(people);
+console.log(formatted);
+//=> [{login: 'doowb'}]
+```
+
+### [.table](lib/formatters.js#L49)
+
+Returns the array of people formatted as a markdown table.
+
+**Params**
+
+* `arr` **{Array}**: Array of people to format.
+* `returns` **{String}**: Markdown table
+
+**Example**
+
+```js
+var people = [
+  { login: 'doowb', contributions: 100, html_url: 'https://github.com/doowb' },
+  { login: 'jonschlinkert', contributions: 50, html_url: 'https://github.com/jonschlinkert' }
+];
+var formatted = formatters.table(people);
+console.log(formatted);
+//=> | **Commits** | **Contributor**<br/> |
+//=> | --- | --- |
+//=> | 100 | [doowb](https://github.com/doowb) |
+//=> | 50 | [jonschlinkert](https://github.com/jonschlinkert) |
+```
+
+### [.list](lib/formatters.js#L86)
+
+Returns the array of people formatted as a markdown list.
+
+**Params**
+
+* `arr` **{Array}**: Array of people to format.
+* `returns` **{String}**: Markdown list
+
+**Example**
+
+```js
+var people = [
+  { login: 'doowb', contributions: 100, html_url: 'https://github.com/doowb' },
+  { login: 'jonschlinkert', contributions: 50, html_url: 'https://github.com/jonschlinkert' }
+];
+var formatted = formatters.list(people);
+console.log(formatted);
+//=> **Commits** / **Contributor**
+//=> + 100 [doowb](https://github.com/doowb)
+//=> + 50 [jonschlinkert](https://github.com/jonschlinkert)
+```
+
+### [.aligned](lib/formatters.js#L120)
+
+Returns the array of people formatted as an aligned code block.
+
+**Params**
+
+* `arr` **{Array}**: Array of people to format.
+* `returns` **{String}**: Markdown code block for alignment
+
+**Example**
+
+```js
+var people = [
+  { login: 'doowb', contributions: 100, html_url: 'https://github.com/doowb' },
+  { login: 'jonschlinkert', contributions: 50, html_url: 'https://github.com/jonschlinkert' }
+];
+var formatted = formatters.aligned(people);
+console.log(formatted);
+//=> COMMITS / CONTRIBUTOR
+//=> ------- | -----------
+//=> 100      doowb
+//=> 50      jonschlinkert
+```
+
+## About
+
+### Related projects
+
+* [github-base](https://www.npmjs.com/package/github-base): JavaScript wrapper that greatly simplifies working with GitHub's API. | [homepage](https://github.com/jonschlinkert/github-base "JavaScript wrapper that greatly simplifies working with GitHub's API.")
+* [github-contributors](https://www.npmjs.com/package/github-contributors): Generate a markdown or JSON list of contributors for a project using the GitHub API. | [homepage](https://github.com/jonschlinkert/github-contributors "Generate a markdown or JSON list of contributors for a project using the GitHub API.")
+
+### Contributing
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+
+Please read the [contributing guide](contributing.md) for avice on opening issues, pull requests, and coding standards.
+
+### Building docs
+
+_(This document was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme) (a [verb](https://github.com/verbose/verb) generator), please don't edit the readme directly. Any changes to the readme must be made in [.verb.md](.verb.md).)_
+
+To generate the readme and API documentation with [verb](https://github.com/verbose/verb):
+
+```sh
+$ npm install -g verb verb-generate-readme && verb
+```
+
+### Running tests
+
+Install dev dependencies:
+
+```sh
+$ npm install -d && npm test
+```
+
+### Author
+
+**Brian Woodward**
+
+* [github/doowb](https://github.com/doowb)
+* [twitter/doowb](http://twitter.com/doowb)
+
+### License
+
+Copyright © 2016, [Brian Woodward](https://github.com/doowb).
+Released under the [MIT license](https://github.com/doowb/format-people/blob/master/LICENSE).
+
+***
+
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.30, on September 09, 2016._
