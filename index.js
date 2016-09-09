@@ -27,4 +27,8 @@ module.exports = function format(arr, options) {
   return formatters[opts.format](arr);
 };
 
+/**
+ * Expose formatters object.
+ */
+
 module.exports.formatters = formatters;
