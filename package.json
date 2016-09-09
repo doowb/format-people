@@ -11,6 +11,7 @@
   "license": "MIT",
   "files": [
     "index.js",
+    "lib",
     "LICENSE"
   ],
   "main": "index.js",
@@ -20,10 +21,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "keywords": [
-    "format",
-    "people"
-  ],
   "dependencies": {
     "extend-shallow": "^2.0.1",
     "markdown-utils": "^0.7.3",
@@ -33,6 +30,10 @@
     "gulp-format-md": "^0.1.10",
     "mocha": "^3.0.2"
   },
+  "keywords": [
+    "format",
+    "people"
+  ],
   "verb": {
     "toc": false,
     "layout": "default",
