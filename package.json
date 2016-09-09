@@ -30,6 +30,30 @@
     "right-pad-values": "^0.3.1"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.10",
     "mocha": "^3.0.2"
+  },
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "related": {
+      "list": [
+        "github-base",
+        "github-contributors"
+      ]
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ]
   }
 }
