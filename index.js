@@ -23,7 +23,6 @@ var formatters = require('./lib/formatters');
 
 module.exports = function format(arr, options) {
   var opts = extend({format: 'noop'}, options);
-
   return formatters[opts.format](arr);
 };
 
