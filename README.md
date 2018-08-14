@@ -14,6 +14,8 @@ $ npm install --save format-people
 
 ## Usage
 
+Requires Node.js v8.0 or higher.
+
 ```js
 const format = require('format-people');
 ```
